@@ -411,6 +411,9 @@ class BaseWsdlWriter extends DomDocument
             $wsdlPart = $this->createElement("part");
             $wsdlPart->setAttribute('name', $part->getName());
             $wsdlPart->setAttribute('type', $part->getType());
+            if ($part->getIsOptional()) {
+                $wsdlPart->setAttribute('minOccurs', '0');
+            }
 
             // Add the Part to the WSDL Message Block
             $wsdlMessage->appendChild($wsdlPart);

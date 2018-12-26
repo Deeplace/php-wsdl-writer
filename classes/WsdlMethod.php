@@ -131,8 +131,9 @@ class WsdlMethod
      * @param string $varType The PHP type
      * @param string $varName The Name of the Parameter
      * @param string $varDesc The Description of the Paramater
+     * @param boolean $optional Parameter is optional
      */
-    public function addParameter($varType, $varName, $varDesc)
+    public function addParameter($varType, $varName, $varDesc, $optional)
     {
         $param = new StdClass();
         if (WsdlType::isArrayTypeClass($varType)) {
@@ -149,6 +150,7 @@ class WsdlMethod
         $param->type = $varType;
         $param->name = $varName;
         $param->desc = $varDesc;
+        $param->optional = $optional;
 
         $this->params[] = $param;
     }
@@ -201,6 +203,7 @@ class WsdlMethod
             $part->setName(($this->header)? $param->type : $param->name);
             $part->setType($param->type);
             $part->setIsHeader($this->header);
+            $part->setIsOptional($param->optional);
 
             $message->parts[] = $part;
         }

@@ -25,6 +25,7 @@ class WsdlPart
     private $name = null;
     private $type = null;
     private $headerPart = false;
+    private $isOptional = false;
 
 
     public function setName($name)
@@ -82,5 +83,23 @@ class WsdlPart
     public function getIsHeader()
     {
         return $this->headerPart;
+    }
+
+    /**
+     * Set whether this part may not occur.
+     * @param boolean $header True if part is optional, false if part is required.
+     */
+    public function setIsOptional($optional)
+    {
+        $this->isOptional = $optional;
+    }
+
+    /**
+     * Get whether this part is optional and may not occur.
+     * @return boolean True if part is optional, false if part is required.
+     */
+    public function getIsOptional()
+    {
+        return $this->isOptional;
     }
 }

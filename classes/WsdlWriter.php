@@ -113,7 +113,7 @@ class WsdlWriter extends BaseWsdlWriter
                 switch ($tag) {
                     case "@param":
                         if (isset($param['type']) && isset($param['name'])) {
-                            $wsdlMethod->addParameter($param['type'], $param['name'], $param['desc']);
+                            $wsdlMethod->addParameter($param['type'], $param['name'], $param['desc'], $param['optional'] === '=null');
                         }
                         break;
                     case "@return":
